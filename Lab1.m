@@ -12,13 +12,15 @@ L4(7) = Link('revolute'   ,'alpha',  -pi/2,  'a',  0,     'd',    MF , 'offset',
 
 ws=[-5 2 -4 4 -2 5];
 
-plot_options = {'workspace',ws,'scale',.5,'view',[125 25],'jaxes','basewidth',10};
+plot_options = {'workspace',ws,'scale',.4,'view',[125 25],'jaxes','basewidth',10};
 RKuka = SerialLink(L4,'name','Kuka','plotopt',plot_options)
 T0tcp=RKuka.fkine([0,0,0,0,0,0,0]);
 %Determinar la posición del último sistema coordenado dado q:
-%q=[pi/3 pi/6 2 pi 3*pi/4]
+q=[pi/3 pi/6 pi/2 pi/4 3*pi/4 3*pi/4 3*pi/4];
+transformRCV=RKuka.fkine(q)
 clf
-RKuka.teach([0,0,0,0,0,0,0]);
+figure()
+RKuka.teach(q)
 %axis ([-5 40 -70 70 -7 70])
 axis equal
 %% 5.2
@@ -70,6 +72,16 @@ addBody(RkukaRST,body4,'body3')
 addBody(RkukaRST,body5,'body4')
 addBody(RkukaRST,body6,'body5')
 addBody(RkukaRST,body7,'body6')
-show(RkukaRST);
-axis([-0.5,0.5,-0.5,0.5,-0.5,2])
-axis on
+
+%test=homeConfiguration(RkukaRST)
+q=[pi/3 pi/6 pi/2 pi/4 3*pi/4 3*pi/4 3*pi/4];
+qRST = struct('JointName',{'jnt1','jnt2','jnt3','jnt4','jnt5','jnt6','jnt7'},'JointPosition',{q(1),q(2),q(3),q(4),q(5),q(6),q(7)});
+
+%motionModel = taskSpaceMotionModel("RigidBodyTree",RkukaRST)
+transformRST = getTransform(RkukaRST,qRST,'body7')
+clf
+figure()
+show(RkukaRST,qRST);
+
+
+
