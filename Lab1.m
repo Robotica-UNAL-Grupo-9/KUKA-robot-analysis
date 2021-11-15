@@ -23,6 +23,11 @@ figure()
 RKuka.teach(q)
 %axis ([-5 40 -70 70 -7 70])
 axis equal
+% Efector final.
+R = [[0 0 -1]' [0 1 0]' [1 0 0]']; % Orientacion de la tool
+Ptool = [0.035 .1 0 1]';
+R3.tool = [[R;[0 0 0]],Ptool];  % 
+
 %% 5.2
 
 MF=0.126;
