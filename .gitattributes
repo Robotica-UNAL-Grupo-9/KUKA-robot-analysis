@@ -1,5 +1,6 @@
 *.fig binary
 *.mat binary
+*.mlapp binary
 *.mdl binary
 *.mdlp binary
 *.mexa64 binary
