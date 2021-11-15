@@ -1,7 +1,7 @@
 %% 5.1
 clf
 syms q1 q2 q3 q4 q5 q6 real
-MF=0.126;
+MF=0.161;
 L4(1) = Link('revolute'   ,'alpha',      0,  'a',  0,     'd',    0.340 , 'offset',     0, 'qlim',  [-170*pi/180 170*pi/180],   'modified');
 L4(2) = Link('revolute'  ,'alpha',   pi/2,  'a',  0, 'd',    0 , 'offset',    0, 'qlim',       [-120*pi/180 120*pi/180],   'modified');
 L4(3) = Link('revolute'   ,'alpha',  -pi/2,  'a',  0,     'd',    0.400 , 'offset',     0, 'qlim',  [-170*pi/180 170*pi/180],   'modified');
@@ -25,7 +25,7 @@ RKuka.teach(q)
 axis equal
 %% 5.2
 
-MF=0.126;
+MF=0.161;
 dhparams = [0   	0	0.340   	0;
             0	pi/2       0       0
             0	-pi/2	0.400	0;
